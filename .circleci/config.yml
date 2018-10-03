@@ -5,7 +5,7 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/Node-Webapp
+    working_directory: ~/node-webapp
     docker:
       - image: docker:17.05.0-ce-git
     steps:
@@ -23,30 +23,30 @@ jobs:
           keys:
             - v1-{{ .Branch }}
           paths:
-            - /caches/Node-Webapp.tar
+            - /caches/node-webapp.tar
       - run:
           name: Load Docker image layer cache
           command: |
             set +o pipefail
-            docker load -i /caches/Node-Webapp.tar | true
+            docker load -i /caches/node-webapp.tar | true
       - run:
           name: Build application Docker image
           command: |
-            docker build --cache-from=Node-Webapp -t Node-Webapp .
+            docker build --cache-from=node-webapp -t node-webapp .
       - run:
           name: Save Docker image layer cache
           command: |
             mkdir -p /caches
-            docker save -o /caches/Node-Webapp.tar app
+            docker save -o /caches/Node-Webapp.tar node-webapp
       - save_cache:
           key: v1-{{ .Branch }}-{{ epoch }}
           paths:
-            - /caches/Node-Webapp.tar
+            - /caches/node-webapp.tar
       - deploy:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login -u lokchhetri -p deepak.0000
-              docker tag Node-Webapp "lokchhetri/node-web-app:${CIRCLE_SHA1}"
+              docker tag node-webapp "lokchhetri/node-web-app:${CIRCLE_SHA1}"
               docker push "lokchhetri/node-web-app:${CIRCLE_SHA1}"
             fi
