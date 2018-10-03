@@ -75,9 +75,9 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-              docker login -u lokchhetri -p deepak.0000
-              docker tag node-webapp "lokchhetri/node-web-app:${CIRCLE_SHA1}"
-              docker push "lokchhetri/node-web-app:${CIRCLE_SHA1}"
+              docker login acrakscluster.azurecr.io -u 73ac4a25-e308-4f21-a61a-22dac7bc433e -p deepak.0001
+              docker tag node-webapp "acrakscluster.azurecr.io/node-web-app:${CIRCLE_SHA1}"
+              docker push "acrakscluster.azurecr.io/node-web-app:${CIRCLE_SHA1}"
             fi
 
 workflows:
