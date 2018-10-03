@@ -46,7 +46,7 @@ jobs:
           name: Push application Docker image
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
-			  docker login -u lokchhetri -p deepak.0000
+              docker login -u lokchhetri -p deepak.0000
               docker tag Node-Webapp "lokchhetri/node-web-app:${CIRCLE_SHA1}"
               docker push "lokchhetri/node-web-app:${CIRCLE_SHA1}"
             fi
