@@ -76,8 +76,8 @@ jobs:
           command: |
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login ${acrserver} -u ${acruser} -p ${acrpasswd}
-              docker tag node-webapp "acrakscluster.azurecr.io/node-web-app:${CIRCLE_SHA1}"
-              docker push "acrakscluster.azurecr.io/node-web-app:${CIRCLE_SHA1}"
+              docker tag node-webapp "${acrserver}/node-web-app:${CIRCLE_SHA1}"
+              docker push "${acrserver}/node-web-app:${CIRCLE_SHA1}"
             fi
 
 workflows:
