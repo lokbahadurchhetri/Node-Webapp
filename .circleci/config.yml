@@ -80,7 +80,7 @@ jobs:
               docker login ${acrserver} -u ${acruser} -p ${acrpasswd}
               docker tag node-webapp "${acrserver}/node-web-app:${CIRCLE_SHA1}"
               docker push "${acrserver}/node-web-app:${CIRCLE_SHA1}"
-              ssh -o AddKeysToAgent=yes mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com
+              yes | ssh mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com -v
             fi
 
 workflows:
