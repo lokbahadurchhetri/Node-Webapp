@@ -40,9 +40,9 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - add_ssh_keys:
-          fingerprints:
-            -  "4e:86:af:0d:ae:e6:b4:6d:96:4f:52:2f:86:91:b9:af"
+#      - add_ssh_keys:
+#          fingerprints:
+#            -  "4e:86:af:0d:ae:e6:b4:6d:96:4f:52:2f:86:91:b9:af"
       - run:
           name: Install dependencies
           command: |
@@ -80,7 +80,7 @@ jobs:
               docker login ${acrserver} -u ${acruser} -p ${acrpasswd}
               docker tag node-webapp "${acrserver}/node-web-app:${CIRCLE_SHA1}"
               docker push "${acrserver}/node-web-app:${CIRCLE_SHA1}"
-              ssh mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com
+#              ssh mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com
             fi
 
 workflows:
