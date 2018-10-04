@@ -81,6 +81,7 @@ jobs:
               docker tag node-webapp "${acrserver}/node-web-app:${CIRCLE_SHA1}"
               docker push "${acrserver}/node-web-app:${CIRCLE_SHA1}"
               ssh -o StrictHostKeyChecking=no mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com -v
+              helm ls
             fi
 
 workflows:
