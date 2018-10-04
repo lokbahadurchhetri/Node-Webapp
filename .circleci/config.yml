@@ -79,9 +79,9 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               docker login ${acrserver} -u ${acruser} -p ${acrpasswd}
               docker tag node-webapp "${acrserver}/node-web-app:${CIRCLE_SHA1}"
-              echo ${CIRCLE_SHA1} && echo ${CIRCLE_SHA1} > test.txt
+              echo ${CIRCLE_SHA1}
               docker push "${acrserver}/node-web-app:${CIRCLE_SHA1}"
-              ssh -o StrictHostKeyChecking=no mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com "helm ls"
+              ssh -o StrictHostKeyChecking=no mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com "export IMAGE_TAG=${CIRCLE_SHA1}"
             fi
 
 workflows:
