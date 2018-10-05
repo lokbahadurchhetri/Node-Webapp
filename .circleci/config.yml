@@ -80,7 +80,7 @@ jobs:
               docker login ${acrserver} -u ${acruser} -p ${acrpasswd}
               docker tag node-webapp "${acrserver}/node-web-app:${CIRCLE_BUILD_NUM}
               docker push "${acrserver}/node-web-app:${CIRCLE_BUILD_NUM}"
-              ssh -o StrictHostKeyChecking=no mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com "env IMAGE_TAG=${CIRCLE_BUILD_NUM}; env"
+              ssh -o StrictHostKeyChecking=no mwadmin@k8sclustermgmt.eastus.cloudapp.azure.com "env IMAGE_TAG=${CIRCLE_BUILD_NUM}; env;"
             fi
 
 workflows:
